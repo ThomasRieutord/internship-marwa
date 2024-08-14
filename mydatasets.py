@@ -174,9 +174,7 @@ class FeaturesLandcover1D(Dataset):
         # Define a list with the numerical input 
         self.numeric_input = [t30m, t500hPa, t850hPa,  psurface, psea, nlong, nshort, h2m,
                           h30m, e850hPa, n850hPa, orography, eastings,  northings]
-        
-        
-        
+
         
         # Flatten the data
         t2m = t2m.flatten()
@@ -202,10 +200,12 @@ class FeaturesLandcover1D(Dataset):
         np.random.seed(self.seed)
         torch.manual_seed(self.seed)
 
+        
         # Minimize size of dataset (if needed)
         if reduce_to is None:
             reduce_to = t2m.size
 
+        
         train_idxs = np.random.randint(0, t2m.size, reduce_to // 2)  # 50% in training
         test_idxs = np.random.randint(0, t2m.size, reduce_to // 4)   # 25% in test
         val_idxs = np.random.randint(0, t2m.size, reduce_to // 4)    # 25% in validation
@@ -219,9 +219,7 @@ class FeaturesLandcover1D(Dataset):
         else:
             raise ValueError("Unknown subset")
 
-            
-            
-            
+        
         # We keep only the selected indices as tensors
         self.t2m = torch.tensor(t2m[idxs])
         self.landcover = torch.tensor(landcover[idxs])
@@ -230,15 +228,11 @@ class FeaturesLandcover1D(Dataset):
         for i in range(len(self.numeric_input)):
             self.numeric_input[i] = torch.tensor(self.numeric_input[i][idxs]) 
             
-
-            
-            
-    
-
     
     def __len__(self):
         return len(self.t2m)
 
+    
     def __getitem__(self, idx):
         """Return an item of the dataset.
 
