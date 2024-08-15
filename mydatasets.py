@@ -172,8 +172,8 @@ class FeaturesLandcover1D(Dataset):
 
         
         # Define a list with the numerical input 
-        self.numeric_input = [t30m, t500hPa, t850hPa,  psurface, psea, nlong, nshort, h2m,
-                          h30m, e850hPa, n850hPa, orography, eastings,  northings]
+        self.numeric_input = [t30m, t500hPa, t850hPa,  psurface, psea, nlong, nshort,e30m, n30m,
+                              h2m, h30m, e850hPa, n850hPa, orography, eastings,  northings]
 
         
         # Flatten the data
